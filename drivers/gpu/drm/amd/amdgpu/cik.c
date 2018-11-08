@@ -747,6 +747,175 @@ static const u32 godavari_golden_registers[] =
 	0xc24d, 0xffffffff, 0x00000000
 };
 
+static const u32 liverpool_golden_common_registers[] =
+{
+		mmATC_MISC_CG, 0x000c0fc0, 0x000c0200,
+		mmCB_HW_CONTROL, 0x0001f3cf, 0x00007208,
+		mmCB_HW_CONTROL_2, 0x0f000000, 0x0f000000,
+		mmCB_HW_CONTROL_3, 0x000001ff, 0x00000040,
+		mmDB_DEBUG2, 0xf00fffff, 0x00000400,
+		mmPA_SC_ENHANCE, 0xffffffff, 0x20000001,
+		mmPA_SC_LINE_STIPPLE_STATE, 0x0000ff0f, 0x00000000,
+		mmPA_SC_RASTER_CONFIG, 0x3f3fffff, 0x2a00161a,
+		mmPA_SC_RASTER_CONFIG_1, 0x0000003f, 0x00000000,
+		mmRLC_CGCG_CGLS_CTRL, 0x00000003, 0x0020003c,
+		0xec9d, 0xffffffff, 0x0001003c, //mmRLC_CGCG_CGLS_CTRL_3D
+		mmSQ_CONFIG, 0x07f80000, 0x07180000,
+		mmTA_CNTL_AUX, 0x000f000f, 0x000b0000,
+		mmTCC_CTRL, 0x00100000, 0xf31fff7f,
+		mmTCP_ADDR_CONFIG, 0x000003ff, 0x000000f7,
+		mmTCP_CHAN_STEER_HI, 0xffffffff, 0x00000000,
+		mmVGT_RESET_DEBUG, 0x00000004, 0x00000004,
+		mmDCI_CLK_CNTL, 0x00000080, 0x00000000,
+		mmFBC_DEBUG_COMP, 0x000000f0, 0x00000070,
+		mmFBC_MISC, 0x9f313fff, 0x14302008,
+		//mmCP_INT_CNTL, 0xffffffff, 0xedda4000, // eeply
+		mmHDMI_CONTROL, 0x313f031f, 0x00000011,
+		mmGRBM_CNTL, 0xffffffff, 0x00000018,
+		mmGRBM_INT_CNTL, 0xffffffff, 0x00000000,
+		mmRLC_SPM_INT_CNTL, 0xffffffff, 0x00000000,
+		mmSPI_INTERP_CONTROL_0, 0xffffffff, 0x00000000,
+		mmCPC_INT_CNTL, 0xffffffff, 0x09824000,
+		mmCP_INT_CNTL, 0xffffffff, 0x0dda4000,
+		mmCP_ME1_PIPE0_INT_CNTL, 0xffffffff, 0x0d824000,
+		mmCP_ME1_PIPE1_INT_CNTL, 0xffffffff, 0x0d824000,
+		mmCP_ME1_PIPE2_INT_CNTL, 0xffffffff, 0x0d824000,
+		mmCP_ME1_PIPE3_INT_CNTL, 0xffffffff, 0x0d824000,
+		mmCP_ME2_PIPE0_INT_CNTL, 0xffffffff, 0x0d824000,
+		mmCP_ME2_PIPE1_INT_CNTL, 0xffffffff, 0x0d824000,
+		mmCP_ME2_PIPE2_INT_CNTL, 0xffffffff, 0x0d824000,
+		mmCP_ME2_PIPE3_INT_CNTL, 0xffffffff, 0x09824000,
+		/*mmCP_INT_STATUS, 0xffffffff, 0x00000000,
+		mmCP_EOP_DONE_EVENT_CNTL, 0xffffffff, 0x00000000,
+		mmCP_HPD_EOP_CONTROL, 0xffffffff, 0x00002009,
+		mmCP_HPD_EOP_BASE_ADDR, 0xffffffff, 0xf8001650,*/
+		mmCB_HW_CONTROL_3, 0xffffffff, 0x00000040,
+		mmCB_DEBUG_BUS_1, 0xffffffff, 0x00008201,
+		mmCB_DEBUG_BUS_15, 0xffffffff, 0x0005c000,
+		mmCB_DEBUG_BUS_16, 0xffffffff, 0x00f0c030,
+		mmCP_INT_CNTL, 0xffffffff, 0x0dda4000,
+		mmCPC_INT_CNTL, 0xffffffff, 0x09824000,
+		mmCP_CE_INTR_ROUTINE_START, 0xffffffff, 0x00000000,
+		mmCP_PFP_INTR_ROUTINE_START, 0xffffffff, 0x00000000,
+		mmCP_EOP_DONE_EVENT_CNTL, 0xffffffff, 0x00000000,
+		mmCP_HQD_PQ_CONTROL, 0xffffffff, 0xc030050d,
+		mmCP_HQD_IB_CONTROL, 0xffffffff, 0x00300000,
+		mmDB_READ_DEBUG_C, 0xffffffff, 0x02a0a04f,
+		mmDB_READ_DEBUG_D, 0xffffffff, 0x47004800,
+		mmGRBM_READ_ERROR, 0xffffffff, 0x80b30800,
+		mmPA_SC_LINE_STIPPLE_STATE, 0xffffffff, 0x00000000,
+		mmPA_SC_SCREEN_EXTENT_MIN_0, 0xffffffff, 0x00000000,
+		mmPA_SC_SCREEN_EXTENT_MAX_0, 0xffffffff, 0x00000000,
+		mmPA_SC_SCREEN_EXTENT_MIN_1, 0xffffffff, 0x00000000,
+		mmPA_SC_SCREEN_EXTENT_MAX_1, 0xffffffff, 0x00000000,
+		mmRLC_PG_ALWAYS_ON_CU_MASK, 0xffffffff, 0x000003ee,
+		mmCGTS_TCC_DISABLE, 0xffffffff, 0x00000000,
+		mmCGTS_USER_TCC_DISABLE, 0xffffffff, 0x00000000,
+		mmSQ_CONFIG, 0xffffffff, 0x00000000,
+		mmSQC_CONFIG, 0xffffffff, 0x01000000,
+		mmSQ_TIME_HI, 0xffffffff, 0x0000000c,
+		mmSQ_TIME_LO, 0xffffffff, 0x5514d8de,
+		mmTD_PERFCOUNTER0_SELECT, 0xffffffff, 0x00000000,
+		mmTD_PERFCOUNTER1_SELECT, 0xffffffff, 0x00000000,
+		mmTD_PERFCOUNTER0_SELECT1, 0xffffffff, 0x00000000,
+		mmWD_PERFCOUNTER0_SELECT, 0xffffffff, 0x00000000,
+		mmWD_PERFCOUNTER1_SELECT, 0xffffffff, 0x00000000,
+		mmWD_PERFCOUNTER2_SELECT, 0xffffffff, 0x00000000,
+		mmWD_PERFCOUNTER3_SELECT, 0xffffffff, 0x00000000,
+		//mmHDP_ADDR_CONFIG, 0xffffffff, 0x12010001,
+		mmCP_INT_STAT_DEBUG, 0xffffffff, 0x00180000,
+		mmCP_INT_CNTL_RING0, 0xffffffff, 0x0dda4000,
+		mmCP_HPD_EOP_BASE_ADDR, 0xffffffff, 0xf8001650,
+		mmCP_INT_STATUS, 0xffffffff, 0x00000000,
+		mmCP_EOP_DONE_EVENT_CNTL, 0xffffffff, 0x00000000,
+		mmCP_HPD_EOP_CONTROL, 0xffffffff, 0x00002009,
+		mmCP_HPD_EOP_BASE_ADDR, 0xffffffff, 0xf8001650,
+		mmCB_HW_CONTROL_3, 0xffffffff, 0x00000040,
+		mmCB_DEBUG_BUS_1, 0xffffffff, 0x00008201,
+		mmCB_DEBUG_BUS_15, 0xffffffff, 0x0005c000,
+		mmCB_DEBUG_BUS_16, 0xffffffff, 0x00f0c030,
+		mmCP_INT_CNTL, 0xffffffff, 0x0dda4000,
+		mmCPC_INT_CNTL, 0xffffffff, 0x09824000,
+		mmCP_CE_INTR_ROUTINE_START, 0xffffffff, 0x00000000,
+		mmCP_PFP_INTR_ROUTINE_START, 0xffffffff, 0x00000000,
+		mmCP_EOP_DONE_EVENT_CNTL, 0xffffffff, 0x00000000,
+		mmCP_ME1_PIPE0_INT_CNTL, 0xffffffff, 0x0b824000,
+		mmCP_ME1_PIPE1_INT_CNTL, 0xffffffff, 0x0b824000,
+		mmCP_ME1_PIPE2_INT_CNTL, 0xffffffff, 0x0b824000,
+		mmCP_ME1_PIPE3_INT_CNTL, 0xffffffff, 0x0b824000,
+		mmCP_ME2_PIPE0_INT_CNTL, 0xffffffff, 0x0b824000,
+		mmCP_ME2_PIPE1_INT_CNTL, 0xffffffff, 0x0b824000,
+		mmCP_ME2_PIPE2_INT_CNTL, 0xffffffff, 0x0b824000,
+		//mmCP_ME2_PIPE3_INT_CNTL, 0xffffffff, 0x09824000,
+
+};
+
+static const u32 liverpool_golden_registers[] =
+{
+		mmGRBM_GFX_INDEX, 0xffffffff, 0xe0000000,
+		mmPA_SC_RASTER_CONFIG, 0xffffffff, 0x2a00161a,
+		mmPA_SC_RASTER_CONFIG_1, 0xffffffff, 0x00000000,
+		mmGB_ADDR_CONFIG, 0xffffffff, 0x00000000, //0x10000000, //0x12011003, //0x22011003,
+		mmSPI_RESOURCE_RESERVE_CU_0, 0xffffffff, 0x00000800,
+		mmSPI_RESOURCE_RESERVE_CU_1, 0xffffffff, 0x00000800,
+		mmSPI_RESOURCE_RESERVE_EN_CU_0, 0xffffffff, 0x00FF7FBF,
+		mmSPI_RESOURCE_RESERVE_EN_CU_1, 0xffffffff, 0x00FF7FAF,
+		mmCP_EOP_DONE_EVENT_CNTL, 0xffffffff, 0x00000000,
+		mmCP_HPD_EOP_CONTROL, 0xffffffff, 0x00002009,
+		0x535, 0xffffffff, 0x00000000, /* VM_CONTEXTS_DISABLE */
+};
+
+static const u32 gladius_golden_common_registers[] =
+{
+	mmATC_MISC_CG, 0x000c0fc0, 0x000c0200,
+	mmCB_HW_CONTROL, 0x0001f3cf, 0x00007208,	// 0x2684
+	mmCB_HW_CONTROL_2, 0x0f000000, 0x0f000000,
+	mmCB_HW_CONTROL_3, 0x000001ff, 0x00000040,
+	mmDB_DEBUG2, 0xf00fffff, 0x00000400,
+	mmPA_SC_ENHANCE, 0xffffffff, 0x20000001,
+	mmPA_SC_LINE_STIPPLE_STATE, 0x0000ff0f, 0x00000000,
+	mmPA_SC_RASTER_CONFIG, 0x3f3fffff, 0x2a00161a,
+	mmPA_SC_RASTER_CONFIG_1, 0x0000003f, 0x0000002e,
+	mmRLC_CGCG_CGLS_CTRL, 0x00000003, 0x0020003c, //0x0001003c,
+	0xec9d, 0xffffffff, 0x0001003c,//mmRLC_CGCG_CGLS_CTRL_3D, 0xffffffff, 0x0001003c,
+	mmSQ_CONFIG, 0x07f80000, 0x07180000,
+	mmTA_CNTL_AUX, 0x000f000f, 0x000b0000,
+	mmTCC_CTRL, 0x00100000, 0xf31fff7f,
+	mmTCP_ADDR_CONFIG, 0x000003ff, 0x000000f7,
+	mmTCP_CHAN_STEER_HI, 0xffffffff, 0x00000000,
+	mmVGT_RESET_DEBUG, 0x00000004, 0x00000004,
+	mmDCI_CLK_CNTL, 0x00000080, 0x00000000,
+	mmFBC_DEBUG_COMP, 0x000000f0, 0x00000070,
+	mmFBC_MISC, 0x9f313fff, 0x14302008,
+	mmHDMI_CONTROL, 0x313f031f, 0x00000011,
+};
+
+static const u32 gladius_golden_registers[] =
+{
+	mmGRBM_GFX_INDEX, 0xffffffff, 0xe0000000,
+	mmPA_SC_RASTER_CONFIG, 0xffffffff, 0x2a00161a,
+	mmPA_SC_RASTER_CONFIG_1, 0xffffffff, 0x0000002e,
+	mmGB_ADDR_CONFIG, 0xffffffff, 0x22011003, //0x22011003,
+	mmSPI_RESOURCE_RESERVE_CU_0, 0xffffffff, 0x00000800,
+	mmSPI_RESOURCE_RESERVE_CU_1, 0xffffffff, 0x00000800,
+	mmSPI_RESOURCE_RESERVE_EN_CU_0, 0xffffffff, 0x00FF7FBF,
+	mmSPI_RESOURCE_RESERVE_EN_CU_1, 0xffffffff, 0x00FF7FAF,
+	0x535, 0xffffffff, 0x00000000, /* VM_CONTEXTS_DISABLE */
+
+};
+
+static const u32 gladius_mgcg_cgcg_init[] =
+{
+	0x0000313a, 0xffffffff, 0x00000003,
+	0x00003079, 0xffffffff, 0x00020201,
+	0x00003108, 0xffffffff, 0xfffffffd,
+	0x0000c200, 0xffffffff, 0xe0000000,
+	0x0000311d, 0xffffffff, 0xffffffff,
+	0x0000311e, 0xffffffff, 0xffffffff,
+	0x0000311f, 0xffffffff, 0x004000ff,
+	0x0000313a, 0xffffffff, 0x00000001,
+};
+
 static void cik_init_golden_registers(struct amdgpu_device *adev)
 {
 	/* Some of the registers might be dependent on GRBM_GFX_INDEX */
@@ -819,6 +988,31 @@ static void cik_init_golden_registers(struct amdgpu_device *adev)
 		amdgpu_program_register_sequence(adev,
 						 hawaii_golden_common_registers,
 						 (const u32)ARRAY_SIZE(hawaii_golden_common_registers));
+		amdgpu_program_register_sequence(adev,
+						 hawaii_golden_spm_registers,
+						 (const u32)ARRAY_SIZE(hawaii_golden_spm_registers));
+		break;
+	case CHIP_LIVERPOOL:
+		/*amdgpu_program_register_sequence(adev,
+						 liverpool_mgcg_cgcg_init,
+						 (const u32)ARRAY_SIZE(liverpool_mgcg_cgcg_init));*/
+		amdgpu_program_register_sequence(adev,
+						 liverpool_golden_registers,
+						 (const u32)ARRAY_SIZE(liverpool_golden_registers));
+		amdgpu_program_register_sequence(adev,
+						 liverpool_golden_common_registers,
+						 (const u32)ARRAY_SIZE(liverpool_golden_common_registers));
+		break;
+	case CHIP_GLADIUS:
+		amdgpu_program_register_sequence(adev,
+						 gladius_mgcg_cgcg_init,
+						 (const u32)ARRAY_SIZE(gladius_mgcg_cgcg_init));
+		amdgpu_program_register_sequence(adev,
+						 gladius_golden_registers,
+						 (const u32)ARRAY_SIZE(gladius_golden_registers));
+		amdgpu_program_register_sequence(adev,
+						 gladius_golden_common_registers,
+						 (const u32)ARRAY_SIZE(gladius_golden_common_registers));
 		amdgpu_program_register_sequence(adev,
 						 hawaii_golden_spm_registers,
 						 (const u32)ARRAY_SIZE(hawaii_golden_spm_registers));
@@ -1779,6 +1973,63 @@ static int cik_common_early_init(void *handle)
 		} else
 			adev->external_rev_id = adev->rev_id + 0xa1;
 		break;
+		case CHIP_LIVERPOOL:
+			adev->cg_flags =
+				AMD_CG_SUPPORT_GFX_MGCG |
+				AMD_CG_SUPPORT_GFX_MGLS |
+				/*AMD_CG_SUPPORT_GFX_CGCG |*/
+				AMD_CG_SUPPORT_GFX_CGLS |
+				AMD_CG_SUPPORT_GFX_CGTS |
+				AMD_CG_SUPPORT_GFX_CGTS_LS |
+				AMD_CG_SUPPORT_GFX_CP_LS |
+				AMD_CG_SUPPORT_SDMA_MGCG |
+				AMD_CG_SUPPORT_SDMA_LS |
+				AMD_CG_SUPPORT_BIF_LS |
+				AMD_CG_SUPPORT_VCE_MGCG |
+				AMD_CG_SUPPORT_UVD_MGCG |
+				AMD_CG_SUPPORT_HDP_LS |
+				AMD_CG_SUPPORT_HDP_MGCG;
+			adev->pg_flags =
+				/*AMD_PG_SUPPORT_GFX_PG |
+				  AMD_PG_SUPPORT_GFX_SMG | */
+				/*AMD_PG_SUPPORT_UVD | */
+				/*AMD_PG_SUPPORT_VCE |
+				  AMD_PG_SUPPORT_CP |
+				  AMD_PG_SUPPORT_GDS |
+				  AMD_PG_SUPPORT_RLC_SMU_HS |
+				  AMD_PG_SUPPORT_SAMU |*/
+				0;
+			adev->external_rev_id = adev->rev_id + 0x61;
+			break;
+
+		case CHIP_GLADIUS:
+			adev->cg_flags =
+				AMD_CG_SUPPORT_GFX_MGCG |
+				AMD_CG_SUPPORT_GFX_MGLS |
+				AMD_CG_SUPPORT_GFX_CGCG |
+				AMD_CG_SUPPORT_GFX_CGLS |
+				AMD_CG_SUPPORT_GFX_CGTS |
+				AMD_CG_SUPPORT_GFX_CGTS_LS |
+				AMD_CG_SUPPORT_GFX_CP_LS |
+				AMD_CG_SUPPORT_SDMA_MGCG |
+				AMD_CG_SUPPORT_SDMA_LS |
+				AMD_CG_SUPPORT_BIF_LS |
+				AMD_CG_SUPPORT_VCE_MGCG |
+				AMD_CG_SUPPORT_UVD_MGCG |
+				AMD_CG_SUPPORT_HDP_LS |
+				AMD_CG_SUPPORT_HDP_MGCG;
+			adev->pg_flags =
+				/*AMD_PG_SUPPORT_GFX_PG |
+					AMD_PG_SUPPORT_GFX_SMG | */
+				/*AMD_PG_SUPPORT_UVD | */
+				/*AMD_PG_SUPPORT_VCE |
+					AMD_PG_SUPPORT_CP |
+					AMD_PG_SUPPORT_GDS |
+					AMD_PG_SUPPORT_RLC_SMU_HS |
+					AMD_PG_SUPPORT_SAMU |*/
+				0;
+			adev->external_rev_id = adev->rev_id + 0x61;
+			break;
 	default:
 		/* FIXME: not supported yet */
 		return -EINVAL;
@@ -1949,6 +2200,42 @@ int cik_set_ip_blocks(struct amdgpu_device *adev)
 		amdgpu_ip_block_add(adev, &cik_sdma_ip_block);
 		amdgpu_ip_block_add(adev, &uvd_v4_2_ip_block);
 		amdgpu_ip_block_add(adev, &vce_v2_0_ip_block);
+		break;
+	case CHIP_LIVERPOOL:
+		amdgpu_ip_block_add(adev, &cik_common_ip_block);
+		amdgpu_ip_block_add(adev, &gmc_v7_0_ip_block);
+		amdgpu_ip_block_add(adev, &cik_ih_ip_block);
+		//amdgpu_ip_block_add(adev, &pp_smu_ip_block);
+		if (adev->enable_virtual_display)
+			amdgpu_ip_block_add(adev, &dce_virtual_ip_block);
+#if defined(CONFIG_DRM_AMD_DC)
+		else if (amdgpu_device_has_dc_support(adev))
+			amdgpu_ip_block_add(adev, &dm_ip_block);
+#endif
+		else
+			amdgpu_ip_block_add(adev, &dce_v8_1_ip_block);
+		amdgpu_ip_block_add(adev, &gfx_v7_1_ip_block);
+		amdgpu_ip_block_add(adev, &cik_sdma_ip_block);
+		/*amdgpu_ip_block_add(adev, &uvd_v4_2_ip_block)*/;
+		/*amdgpu_ip_block_add(adev, &vce_v2_0_ip_block)*/;
+		break;
+	case CHIP_GLADIUS:
+		amdgpu_ip_block_add(adev, &cik_common_ip_block);
+		amdgpu_ip_block_add(adev, &gmc_v7_0_ip_block);
+		amdgpu_ip_block_add(adev, &cik_ih_ip_block);
+		//amdgpu_ip_block_add(adev, &pp_smu_ip_block);
+		if (adev->enable_virtual_display)
+			amdgpu_ip_block_add(adev, &dce_virtual_ip_block);
+#if defined(CONFIG_DRM_AMD_DC)
+		else if (amdgpu_device_has_dc_support(adev))
+			amdgpu_ip_block_add(adev, &dm_ip_block);
+#endif
+		else
+			amdgpu_ip_block_add(adev, &dce_v8_1_ip_block);
+		amdgpu_ip_block_add(adev, &gfx_v7_1_ip_block);
+		amdgpu_ip_block_add(adev, &cik_sdma_ip_block);
+		/*amdgpu_ip_block_add(adev, &uvd_v4_2_ip_block)*/;
+		/*amdgpu_ip_block_add(adev, &vce_v2_0_ip_block)*/;
 		break;
 	default:
 		/* FIXME: not supported yet */

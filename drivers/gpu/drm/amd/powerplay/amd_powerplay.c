@@ -1476,4 +1476,3 @@ int amd_powerplay_get_display_mode_validation_clocks(void *handle,
 	mutex_unlock(&pp_handle->pp_lock);
 	return ret;
 }
-

@@ -78,6 +78,13 @@ config USB_XHCI_TEGRA
 	---help---
 	  Say 'Y' to enable the support for the xHCI host controller
 	  found in NVIDIA Tegra124 and later SoCs.
+		
+config USB_XHCI_AEOLIA
+	tristate "xHCI support for Sony PS4 (Aeolia)"
+	depends on X86_PS4
+	---help---
+	  Say 'Y' to enable the support for the xHCI host controller
+	  found in the Sony PlayStation 4.
 
 endif # USB_XHCI_HCD
 
@@ -687,7 +694,7 @@ config USB_SL811_HCD
 	help
 	  The SL811HS is a single-port USB controller that supports either
 	  host side or peripheral side roles.  Enable this option if your
-	  board has this chip, and you want to use it as a host controller. 
+	  board has this chip, and you want to use it as a host controller.
 	  If unsure, say N.
 
 	  To compile this driver as a module, choose M here: the

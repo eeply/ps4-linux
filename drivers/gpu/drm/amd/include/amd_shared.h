@@ -24,7 +24,6 @@
 #define __AMD_SHARED_H__
 
 #define AMD_MAX_USEC_TIMEOUT		200000  /* 200 ms */
-
 /*
  * Supported ASIC types
  */
@@ -37,6 +36,8 @@ enum amd_asic_type {
 	CHIP_BONAIRE,
 	CHIP_KAVERI,
 	CHIP_KABINI,
+	CHIP_LIVERPOOL,
+	CHIP_GLADIUS,
 	CHIP_HAWAII,
 	CHIP_MULLINS,
 	CHIP_TOPAZ,

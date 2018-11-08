@@ -1517,7 +1517,29 @@ static const struct drm_connector_funcs amdgpu_connector_dp_funcs = {
 	.destroy = amdgpu_connector_destroy,
 	.force = amdgpu_connector_dvi_force,
 };
+#ifdef CONFIG_X86_PS4
+int ps4_bridge_get_modes(struct drm_connector *connector);
+int ps4_bridge_mode_valid(struct drm_connector *connector,
+			struct drm_display_mode *mode);
+enum drm_connector_status ps4_bridge_detect(struct drm_connector *connector,
+					  bool force);
 
+
+static const struct drm_connector_helper_funcs amdgpu_ps4_dp_connector_helper_funcs = {
+	.get_modes = ps4_bridge_get_modes,
+	.mode_valid = ps4_bridge_mode_valid,
+	.best_encoder = amdgpu_connector_dvi_encoder,
+};
+
+static const struct drm_connector_funcs amdgpu_ps4_dp_connector_funcs = {
+	.dpms = drm_helper_connector_dpms,
+	.detect = ps4_bridge_detect,
+	.fill_modes = drm_helper_probe_single_connector_modes,
+	//.set_property = amdgpu_connector_set_property,
+	.destroy = amdgpu_connector_destroy,
+	.force = amdgpu_connector_dvi_force,
+};
+#endif
 static const struct drm_connector_funcs amdgpu_connector_edp_funcs = {
 	.dpms = drm_helper_connector_dpms,
 	.detect = amdgpu_connector_dp_detect,
@@ -1547,6 +1569,7 @@ amdgpu_connector_add(struct amdgpu_device *adev,
 	uint32_t subpixel_order = SubPixelNone;
 	bool shared_ddc = false;
 	bool is_dp_bridge = false;
+	bool is_ps4_bridge = false;
 	bool has_aux = false;
 
 	if (connector_type == DRM_MODE_CONNECTOR_Unknown)
@@ -1590,7 +1613,16 @@ amdgpu_connector_add(struct amdgpu_device *adev,
 	amdgpu_connector = kzalloc(sizeof(struct amdgpu_connector), GFP_KERNEL);
 	if (!amdgpu_connector)
 		return;
-
+	/* Liverpool (PS4) has an DP bridge which needs a special driver, and
+	 * a fake HDMI port that doesn't really exist. */
+	if (adev->asic_type == CHIP_LIVERPOOL || adev->asic_type == CHIP_GLADIUS) {
+		if (connector_type == DRM_MODE_CONNECTOR_DisplayPort) {
+			connector_type = DRM_MODE_CONNECTOR_HDMIA;
+			is_dp_bridge = true;
+		} else {
+			return;
+		}
+	}
 	connector = &amdgpu_connector->base;
 
 	amdgpu_connector->connector_id = connector_id;
@@ -1641,10 +1673,17 @@ amdgpu_connector_add(struct amdgpu_device *adev,
 		case DRM_MODE_CONNECTOR_HDMIA:
 		case DRM_MODE_CONNECTOR_HDMIB:
 		case DRM_MODE_CONNECTOR_DisplayPort:
+		if (is_ps4_bridge) {
 			drm_connector_init(dev, &amdgpu_connector->base,
 					   &amdgpu_connector_dp_funcs, connector_type);
 			drm_connector_helper_add(&amdgpu_connector->base,
 						 &amdgpu_connector_dp_helper_funcs);
+		} else {
+			drm_connector_init(dev, &amdgpu_connector->base,
+						&amdgpu_ps4_dp_connector_funcs, connector_type);
+			drm_connector_helper_add(&amdgpu_connector->base,
+						&amdgpu_ps4_dp_connector_helper_funcs);
+		}
 			drm_object_attach_property(&amdgpu_connector->base.base,
 						      adev->mode_info.underscan_property,
 						      UNDERSCAN_OFF);

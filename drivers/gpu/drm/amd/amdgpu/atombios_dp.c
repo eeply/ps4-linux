@@ -261,12 +261,19 @@ static int amdgpu_atombios_dp_get_dp_link_config(struct drm_connector *connector
 		amdgpu_atombios_dp_convert_bpc_to_bpp(amdgpu_connector_get_monitor_bpc(connector));
 	static const unsigned link_rates[3] = { 162000, 270000, 540000 };
 	unsigned max_link_rate = drm_dp_max_link_rate(dpcd);
+	unsigned min_lane_num = 1;
 	unsigned max_lane_num = drm_dp_max_lane_count(dpcd);
 	unsigned lane_num, i, max_pix_clock;
+	struct amdgpu_connector *amdgpu_connector = to_amdgpu_connector(connector);
+	struct drm_device *dev = amdgpu_connector->base.dev;
+	struct amdgpu_device *adev = dev->dev_private;
 
+	/* Liverpool is always connected to an encoder that needs 4 lanes */
+	if (adev->asic_type == CHIP_LIVERPOOL)
+			min_lane_num = 4;
 	if (amdgpu_connector_encoder_get_dp_bridge_encoder_id(connector) ==
 	    ENCODER_OBJECT_ID_NUTMEG) {
-		for (lane_num = 1; lane_num <= max_lane_num; lane_num <<= 1) {
+		for (lane_num = min_lane_num; lane_num <= max_lane_num; lane_num <<= 1) {
 			max_pix_clock = (lane_num * 270000 * 8) / bpp;
 			if (max_pix_clock >= pix_clock) {
 				*dp_lanes = lane_num;

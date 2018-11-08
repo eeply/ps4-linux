@@ -121,6 +121,13 @@ MODULE_FIRMWARE("radeon/mullins_mec.bin");
 MODULE_FIRMWARE("radeon/mullins_rlc.bin");
 MODULE_FIRMWARE("radeon/mullins_sdma.bin");
 
+MODULE_FIRMWARE("radeon/LIVERPOOL_pfp.bin");
+MODULE_FIRMWARE("radeon/LIVERPOOL_me.bin");
+MODULE_FIRMWARE("radeon/LIVERPOOL_ce.bin");
+MODULE_FIRMWARE("radeon/LIVERPOOL_mec.bin");
+MODULE_FIRMWARE("radeon/LIVERPOOL_rlc.bin");
+MODULE_FIRMWARE("radeon/LIVERPOOL_sdma.bin");
+
 extern int r600_ih_ring_alloc(struct radeon_device *rdev);
 extern void r600_ih_ring_fini(struct radeon_device *rdev);
 extern void evergreen_mc_stop(struct radeon_device *rdev, struct evergreen_mc_save *save);
@@ -1041,6 +1048,421 @@ static const u32 kalindi_rlc_save_restore_register_list[] =
 	(0x0e00 << 16) | (0x9600 >> 2),
 };
 
+static const u32 liverpool_rlc_save_restore_register_list[] =
+{
+	(0x0600 << 16) | 0x263d,
+	0x00000000,
+	(0x0680 << 16) | 0x263d,
+	0x00000000,
+	(0x0e00 << 16) | 0x263e,
+	0x00000000,
+	(0x0e00 << 16) | 0x2640,
+	0x00000000,
+	(0x0e00 << 16) | 0x3098,
+	0x00000000,
+	(0x0e00 << 16) | 0x243a,
+	0x00000000,
+	(0x0e00 << 16) | 0xf000,
+	0x00000000,
+	(0x0e00 << 16) | 0xf003,
+	0x00000000,
+	(0x0e00 << 16) | 0x2307,
+	0x00000000,
+	(0x0e00 << 16) | 0x25c0,
+	0x00000000,
+	(0x0e00 << 16) | 0x3348,
+	0x00000000,
+	(0x1e00 << 16) | 0x3348,
+	0x00000000,
+	(0x4e00 << 16) | 0x3348,
+	0x00000000,
+	(0x5e00 << 16) | 0x3348,
+	0x00000000,
+	(0x6e00 << 16) | 0x3348,
+	0x00000000,
+	(0x7e00 << 16) | 0x3348,
+	0x00000000,
+	(0x8e00 << 16) | 0x3348,
+	0x00000000,
+	(0x9e00 << 16) | 0x3348,
+	0x00000000,
+	(0xae00 << 16) | 0x3348,
+	0x00000000,
+	(0xbe00 << 16) | 0x3348,
+	0x00000000,
+	(0x0400 << 16) | 0x226f,
+	0x00000000,
+	(0x0480 << 16) | 0x226f,
+	0x00000000,
+	(0x0e00 << 16) | 0x2240,
+	0x00000000,
+	0x3,
+	(0x0e00 << 16) | 0x260d,
+	0x00000000,
+	(0x0000 << 16) | 0xc3c0,
+	0x00000000,
+	(0x0001 << 16) | 0xc3c0,
+	0x00000000,
+	(0x0002 << 16) | 0xc3c0,
+	0x00000000,
+	(0x0003 << 16) | 0xc3c0,
+	0x00000000,
+	(0x0080 << 16) | 0xc3c0,
+	0x00000000,
+	(0x0081 << 16) | 0xc3c0,
+	0x00000000,
+	(0x0082 << 16) | 0xc3c0,
+	0x00000000,
+	(0x0083 << 16) | 0xc3c0,
+	0x00000000,
+	(0x0000 << 16) | 0xc3c1,
+	0x00000000,
+	(0x0001 << 16) | 0xc3c1,
+	0x00000000,
+	(0x0002 << 16) | 0xc3c1,
+	0x00000000,
+	(0x0003 << 16) | 0xc3c1,
+	0x00000000,
+	(0x0080 << 16) | 0xc3c1,
+	0x00000000,
+	(0x0081 << 16) | 0xc3c1,
+	0x00000000,
+	(0x0082 << 16) | 0xc3c1,
+	0x00000000,
+	(0x0083 << 16) | 0xc3c1,
+	0x00000000,
+	(0x0000 << 16) | 0xc3c2,
+	0x00000000,
+	(0x0001 << 16) | 0xc3c2,
+	0x00000000,
+	(0x0002 << 16) | 0xc3c2,
+	0x00000000,
+	(0x0003 << 16) | 0xc3c2,
+	0x00000000,
+	(0x0080 << 16) | 0xc3c2,
+	0x00000000,
+	(0x0081 << 16) | 0xc3c2,
+	0x00000000,
+	(0x0082 << 16) | 0xc3c2,
+	0x00000000,
+	(0x0083 << 16) | 0xc3c2,
+	0x00000000,
+	(0x0000 << 16) | 0xc3c3,
+	0x00000000,
+	(0x0001 << 16) | 0xc3c3,
+	0x00000000,
+	(0x0002 << 16) | 0xc3c3,
+	0x00000000,
+	(0x0003 << 16) | 0xc3c3,
+	0x00000000,
+	(0x0080 << 16) | 0xc3c3,
+	0x00000000,
+	(0x0081 << 16) | 0xc3c3,
+	0x00000000,
+	(0x0082 << 16) | 0xc3c3,
+	0x00000000,
+	(0x0083 << 16) | 0xc3c3,
+	0x00000000,
+	(0x0600 << 16) | 0x26df,
+	0x00000000,
+	(0x0680 << 16) | 0x26df,
+	0x00000000,
+	(0x0e00 << 16) | 0x2285,
+	0x00000000,
+	(0x0e00 << 16) | 0x2286,
+	0x00000000,
+	(0x0600 << 16) | 0xc280,
+	0x00000000,
+	(0x0680 << 16) | 0xc280,
+	0x00000000,
+	(0x1600 << 16) | 0xc280,
+	0x00000000,
+	(0x1680 << 16) | 0xc280,
+	0x00000000,
+	(0x0e00 << 16) | 0x22fc,
+	0x00000000,
+	(0x0e00 << 16) | 0x22f3,
+	0x00000000,
+	(0x0e00 << 16) | 0x22c9,
+	0x00000000,
+	(0x0e00 << 16) | 0xc281,
+	0x00000000,
+	(0x1e00 << 16) | 0xc281,
+	0x00000000,
+	(0x0600 << 16) | 0xc284,
+	0x00000000,
+	(0x0680 << 16) | 0xc284,
+	0x00000000,
+	(0x1600 << 16) | 0xc284,
+	0x00000000,
+	(0x1680 << 16) | 0xc284,
+	0x00000000,
+	(0x0600 << 16) | 0xc285,
+	0x00000000,
+	(0x0680 << 16) | 0xc285,
+	0x00000000,
+	(0x1600 << 16) | 0xc285,
+	0x00000000,
+	(0x1680 << 16) | 0xc285,
+	0x00000000,
+	(0x0600 << 16) | 0xc286,
+	0x00000000,
+	(0x0680 << 16) | 0xc286,
+	0x00000000,
+	(0x1600 << 16) | 0xc286,
+	0x00000000,
+	(0x1680 << 16) | 0xc286,
+	0x00000000,
+	(0x0600 << 16) | 0xc28b,
+	0x00000000,
+	(0x0680 << 16) | 0xc28b,
+	0x00000000,
+	(0x1600 << 16) | 0xc28b,
+	0x00000000,
+	(0x1680 << 16) | 0xc28b,
+	0x00000000,
+	(0x0e00 << 16) | 0x31c0,
+	0x00000000,
+	(0x0e00 << 16) | 0x31c1,
+	0x00000000,
+	(0x0e00 << 16) | 0x31c2,
+	0x00000000,
+	(0x0e00 << 16) | 0x31da,
+	0x00000000,
+	(0x0400 << 16) | 0x31dc,
+	0x00000000,
+	(0x0480 << 16) | 0x31dc,
+	0x00000000,
+	(0x0400 << 16) | 0x31dd,
+	0x00000000,
+	(0x0480 << 16) | 0x31dd,
+	0x00000000,
+	(0x0400 << 16) | 0x31de,
+	0x00000000,
+	(0x0480 << 16) | 0x31de,
+	0x00000000,
+	(0x0400 << 16) | 0x31df,
+	0x00000000,
+	(0x0480 << 16) | 0x31df,
+	0x00000000,
+	(0x0400 << 16) | 0x31e0,
+	0x00000000,
+	(0x0480 << 16) | 0x31e0,
+	0x00000000,
+	(0x0400 << 16) | 0x31e1,
+	0x00000000,
+	(0x0480 << 16) | 0x31e1,
+	0x00000000,
+	(0x0400 << 16) | 0x31e2,
+	0x00000000,
+	(0x0480 << 16) | 0x31e2,
+	0x00000000,
+	(0x0400 << 16) | 0x31e3,
+	0x00000000,
+	(0x0480 << 16) | 0x31e3,
+	0x00000000,
+	(0x0400 << 16) | 0x31e4,
+	0x00000000,
+	(0x0480 << 16) | 0x31e4,
+	0x00000000,
+	(0x0400 << 16) | 0x31e5,
+	0x00000000,
+	(0x0480 << 16) | 0x31e5,
+	0x00000000,
+	(0x0400 << 16) | 0x31e6,
+	0x00000000,
+	(0x0480 << 16) | 0x31e6,
+	0x00000000,
+	(0x0400 << 16) | 0x31e7,
+	0x00000000,
+	(0x0480 << 16) | 0x31e7,
+	0x00000000,
+	(0x0400 << 16) | 0x31e8,
+	0x00000000,
+	(0x0480 << 16) | 0x31e8,
+	0x00000000,
+	(0x0400 << 16) | 0x31e9,
+	0x00000000,
+	(0x0480 << 16) | 0x31e9,
+	0x00000000,
+	(0x0400 << 16) | 0x31ea,
+	0x00000000,
+	(0x0480 << 16) | 0x31ea,
+	0x00000000,
+	(0x0400 << 16) | 0x31eb,
+	0x00000000,
+	(0x0480 << 16) | 0x31eb,
+	0x00000000,
+	(0x0400 << 16) | 0x31ec,
+	0x00000000,
+	(0x0480 << 16) | 0x31ec,
+	0x00000000,
+	(0x0400 << 16) | 0x31ed,
+	0x00000000,
+	(0x0480 << 16) | 0x31ed,
+	0x00000000,
+	(0x0400 << 16) | 0x31ee,
+	0x00000000,
+	(0x0480 << 16) | 0x31ee,
+	0x00000000,
+	(0x0400 << 16) | 0x31ef,
+	0x00000000,
+	(0x0480 << 16) | 0x31ef,
+	0x00000000,
+	(0x0e00 << 16) | 0x2440,
+	0x00000000,
+	(0x0e00 << 16) | 0xf004,
+	0x00000000,
+	(0x0e00 << 16) | 0x24aa,
+	0x00000000,
+	(0x0e00 << 16) | 0x24ab,
+	0x00000000,
+	(0x0e00 << 16) | 0x24ac,
+	0x00000000,
+	(0x0e00 << 16) | 0x24ad,
+	0x00000000,
+	(0x0e00 << 16) | 0x24ae,
+	0x00000000,
+	(0x0e00 << 16) | 0x24af,
+	0x00000000,
+	(0x0e00 << 16) | 0x24b0,
+	0x00000000,
+	(0x0e00 << 16) | 0x24b1,
+	0x00000000,
+	(0x0e00 << 16) | 0x24b2,
+	0x00000000,
+	(0x0e00 << 16) | 0x24b3,
+	0x00000000,
+	(0x0e00 << 16) | 0x24b4,
+	0x00000000,
+	(0x0e00 << 16) | 0x2300,
+	0x00000000,
+	(0x0e00 << 16) | 0x2301,
+	0x00000000,
+	(0x0e00 << 16) | 0x2308,
+	0x00000000,
+	(0x0e00 << 16) | 0x230e,
+	0x00000000,
+	(0x0e00 << 16) | 0x230f,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b80,
+	0x00000000,
+	(0x0e00 << 16) | 0x2581,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b02,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b03,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b04,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b05,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b16,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b1a,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b1b,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b1c,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b1d,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b1e,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b1f,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b20,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b21,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b22,
+	0x00000000,
+	(0x0e00 << 16) | 0x2b23,
+	0x00000000,
+	(0x0e00 << 16) | 0x25c3,
+	0x00000000,
+	(0x0e00 << 16) | 0x25c5,
+	0x00000000,
+	(0x0e00 << 16) | 0x25c6,
+	0x00000000,
+	(0x0e00 << 16) | 0x25c7,
+	0x00000000,
+	(0x0e00 << 16) | 0xc41a,
+	0x00000000,
+	(0x1e00 << 16) | 0xc41a,
+	0x00000000,
+	(0x4e00 << 16) | 0xc41a,
+	0x00000000,
+	(0x5e00 << 16) | 0xc41a,
+	0x00000000,
+	(0x6e00 << 16) | 0xc41a,
+	0x00000000,
+	(0x7e00 << 16) | 0xc41a,
+	0x00000000,
+	(0x8e00 << 16) | 0xc41a,
+	0x00000000,
+	(0x9e00 << 16) | 0xc41a,
+	0x00000000,
+	(0xae00 << 16) | 0xc41a,
+	0x00000000,
+	(0xbe00 << 16) | 0xc41a,
+	0x00000000,
+	(0x0e00 << 16) | 0x3344,
+	0x00000000,
+	(0x0e00 << 16) | 0x3345,
+	0x00000000,
+	(0x0e00 << 16) | 0x222c,
+	0x00000000,
+	(0x0e00 << 16) | 0x222d,
+	0x00000000,
+	(0x0e00 << 16) | 0x222e,
+	0x00000000,
+	(0x0e00 << 16) | 0x222f,
+	0x00000000,
+	(0x0400 << 16) | 0x2270,
+	0x00000000,
+	(0x0480 << 16) | 0x2270,
+	0x00000000,
+	(0x0e00 << 16) | 0x2231,
+	0x00000000,
+	(0x0e00 << 16) | 0x2274,
+	0x00000000,
+	(0x0e00 << 16) | 0x2234,
+	0x00000000,
+	(0x0e00 << 16) | 0x2235,
+	0x00000000,
+	(0x0e00 << 16) | 0x2236,
+	0x00000000,
+	(0x0e00 << 16) | 0x2260,
+	0x00000000,
+	(0x0e00 << 16) | 0x2262,
+	0x00000000,
+	(0x0e00 << 16) | 0x226c,
+	0x00000000,
+	(0x0e00 << 16) | 0x226e,
+	0x00000000,
+	(0x0e00 << 16) | 0x2268,
+	0x00000000,
+	(0x0e00 << 16) | 0x2232,
+	0x00000000,
+	(0x0e00 << 16) | 0x2233,
+	0x00000000,
+	(0x0e00 << 16) | 0x226d,
+	0x00000000,
+	(0x0e00 << 16) | 0xf87f,
+	0x00000000,
+	(0x0e00 << 16) | 0xf084,
+	0x00000000,
+	(0x0e00 << 16) | 0xf085,
+	0x00000000,
+	(0x0e00 << 16) | 0xf086,
+	0x00000000,
+	(0x0e00 << 16) | 0x2241,
+	0x00000000,
+	1,
+	(0x0e00 << 16) | 0x230d,
+};
+
 static const u32 bonaire_golden_spm_registers[] =
 {
 	0x30800, 0xe0ffffff, 0xe0000000
@@ -1183,6 +1605,163 @@ static const u32 bonaire_mgcg_cgcg_init[] =
 	0xc1e4, 0x00000001, 0x00000001,
 	0xd00c, 0xff000ff0, 0x00000100,
 	0xd80c, 0xff000ff0, 0x00000100
+};
+
+static const u32 liverpool_golden_common_registers[] =
+{
+	0xc770, 0xffffffff, 0x00000800, /* SPI_RESOURCE_RESERVE_CU_0 */
+	0xc774, 0xffffffff, 0x00000800, /* SPI_RESOURCE_RESERVE_CU_1 */
+	0xc798, 0xffffffff, 0x00ffffbf, /* SPI_RESOURCE_RESERVE_EN_CU_0 */
+	0xc79c, 0xffffffff, 0x00ffffaf, /* SPI_RESOURCE_RESERVE_EN_CU_1 */
+	0xc7a0, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_2 */
+	0xc7a4, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_3*/
+	0xc7a8, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_4 */
+	0xc7ac, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_5 */
+	0xc7b0, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_6 */
+	0xc7b4, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_7 */
+	0xc7b8, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_8 */
+	0xc7bc, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_9 */
+	0x28350, 0xffffffff, 0x2a00161a, /* PA_SC_RASTER_CONFIG */
+	0x28354, 0xffffffff, 0x00000000, /* PA_SC_RASTER_CONFIG_1 */
+	0x5004, 0x00002000, 0x00002000, /* GARLIC_FLUSH_CNTL */
+};
+
+static const u32 liverpool_golden_registers[] =
+{
+	0xc420, 0xffffffff, 0xfffffffc, /* RLC_CGTT_MGCG_OVERRIDE */
+	0x30800, 0xffffffff, 0xe0000000, /* GRBM_GFX_INDEX */
+	/* These are all setting OFF_HYSTERESIS = 0x10 */
+	0x3c2a0, 0xffffffff, 0x00000100, /* CB_CGTT_SCLK_CTRL */
+	0x3c208, 0xffffffff, 0x00000100, /* CGTT_BCI_CLK_CTRL */
+	0x3c2c0, 0xffffffff, 0x00000100, /* CGTT_CP_CLK_CTRL */
+	0x3c2c8, 0xffffffff, 0x00000100, /* CGTT_CPC_CLK_CTRL */
+	0x3c2c4, 0xffffffff, 0x00000100, /* CGTT_CPF_CLK_CTRL */
+	0x55e4, 0xffffffff, 0x00600100, /* CGTT_DRM_CLK_CTRL0 */
+	0x3c280, 0xffffffff, 0x00000100, /* CGTT_GDS_CLK_CTRL */
+	0x3c214, 0xffffffff, 0x06000100, /* CGTT_IA_CLK_CTRL */
+	0x3c220, 0xffffffff, 0x00000100, /* CGTT_PA_CLK_CTRL */
+	0x3c218, 0xffffffff, 0x06000100, /* CGTT_WD_CLK_CTRL */
+	0x3c204, 0xffffffff, 0x00000100, /* CGTT_PC_CLK_CTRL */
+	0x3c2e0, 0xffffffff, 0x00000100, /* CGTT_RLC_CLK_CTRL */
+	0x3c224, 0xffffffff, 0x00000100, /* CGTT_SC_CLK_CTRL */
+	0x3c200, 0xffffffff, 0x00000100, /* CGTT_SPI_CLK_CTRL */
+	0x3c230, 0xffffffff, 0x00000100, /* CGTT_SQ_CLK_CTRL */
+	0x3c234, 0xffffffff, 0x00000100, /* CGTT_SQG_CLK_CTRL */
+	0x3c250, 0xffffffff, 0x00000100, /* CGTT_SX_CLK_CTRL0 */
+	0x3c254, 0xffffffff, 0x00000100, /* CGTT_SX_CLK_CTRL1 */
+	0x3c258, 0xffffffff, 0x00000100, /* CGTT_SX_CLK_CTRL2 */
+	0x3c25c, 0xffffffff, 0x00000100, /* CGTT_SX_CLK_CTRL3 */
+	0x3c260, 0xffffffff, 0x00000100, /* CGTT_SX_CLK_CTRL4 */
+	0x3c27c, 0xffffffff, 0x00000100, /* CGTT_TCI_CLK_CTRL */
+	0x3c278, 0xffffffff, 0x00000100, /* CGTT_TCP_CLK_CTRL */
+	0x3c210, 0xffffffff, 0x06000100, /* CGTT_VGT_CLK_CTRL */
+	0x3c290, 0xffffffff, 0x00000100, /* DB_CGTT_CLK_CTRL_0 */
+	0x3c274, 0xffffffff, 0x00000100, /* TA_CGTT_CTRL */
+	0x3c2b4, 0xffffffff, 0x00000100, /* TCA_CGTT_SCLK_CTRL */
+	0x3c2b0, 0xffffffff, 0x00000100, /* TCC_CGTT_SCLK_CTRL */
+	0x3c270, 0xffffffff, 0x00000100, /* TD_CGTT_CTRL */
+	0x30800, 0xffffffff, 0xe0000000, /* GRBM_GFX_INDEX */
+	0x3c020, 0xffffffff, 0x00010000, /* CGTS_CU0_SP0_CTRL_REG */
+	0x3c024, 0xffffffff, 0x00030002, /* CGTS_CU0_LDS_SQ_CTRL_REG */
+	0x3c028, 0xffffffff, 0x00040007, /* CGTS_CU0_TA_SQC_CTRL_REG */
+	0x3c02c, 0xffffffff, 0x00060005, /* CGTS_CU0_SP1_CTRL_REG */
+	0x3c030, 0xffffffff, 0x00090008, /* CGTS_CU0_TD_TCP_CTRL_REG */
+	0x3c034, 0xffffffff, 0x00010000, /* CGTS_CU1_SP0_CTRL_REG */
+	0x3c038, 0xffffffff, 0x00030002, /* CGTS_CU1_LDS_SQ_CTRL_REG */
+	0x3c03c, 0xffffffff, 0x00040007, /* CGTS_CU1_TA_CTRL_REG */
+	0x3c040, 0xffffffff, 0x00060005, /* CGTS_CU1_SP1_CTRL_REG */
+	0x3c044, 0xffffffff, 0x00090008, /* CGTS_CU1_TD_TCP_CTRL_REG */
+	0x3c048, 0xffffffff, 0x00010000, /* CGTS_CU2_SP0_CTRL_REG */
+	0x3c04c, 0xffffffff, 0x00030002, /* CGTS_CU2_LDS_SQ_CTRL_REG */
+	0x3c050, 0xffffffff, 0x00040007, /* CGTS_CU2_TA_CTRL_REG */
+	0x3c054, 0xffffffff, 0x00060005, /* CGTS_CU2_SP1_CTRL_REG */
+	0x3c058, 0xffffffff, 0x00090008, /* CGTS_CU2_TD_TCP_CTRL_REG */
+	0x3c05c, 0xffffffff, 0x00010000, /* CGTS_CU3_SP0_CTRL_REG */
+	0x3c060, 0xffffffff, 0x00030002, /* CGTS_CU3_LDS_SQ_CTRL_REG */
+	0x3c064, 0xffffffff, 0x00040007, /* CGTS_CU3_TA_SQC_CTRL_REG */
+	0x3c068, 0xffffffff, 0x00060005, /* CGTS_CU3_SP1_CTRL_REG */
+	0x3c06c, 0xffffffff, 0x00090008, /* CGTS_CU3_TD_TCP_CTRL_REG */
+	0x3c070, 0xffffffff, 0x00010000, /* CGTS_CU4_SP0_CTRL_REG */
+	0x3c074, 0xffffffff, 0x00030002, /* CGTS_CU4_LDS_SQ_CTRL_REG */
+	0x3c078, 0xffffffff, 0x00040007, /* CGTS_CU4_TA_CTRL_REG */
+	0x3c07c, 0xffffffff, 0x00060005, /* CGTS_CU4_SP1_CTRL_REG */
+	0x3c080, 0xffffffff, 0x00090008, /* CGTS_CU4_TD_TCP_CTRL_REG */
+	0x3c084, 0xffffffff, 0x00010000, /* CGTS_CU5_SP0_CTRL_REG */
+	0x3c088, 0xffffffff, 0x00030002, /* CGTS_CU5_LDS_SQ_CTRL_REG */
+	0x3c08c, 0xffffffff, 0x00040007, /* CGTS_CU5_TA_CTRL_REG */
+	0x3c090, 0xffffffff, 0x00060005, /* CGTS_CU5_SP1_CTRL_REG */
+	0x3c094, 0xffffffff, 0x00090008, /* CGTS_CU5_TD_TCP_CTRL_REG */
+	0x3c098, 0xffffffff, 0x00010000, /* CGTS_CU6_SP0_CTRL_REG */
+	0x3c09c, 0xffffffff, 0x00030002, /* CGTS_CU6_LDS_SQ_CTRL_REG */
+	0x3c0a0, 0xffffffff, 0x00040007, /* CGTS_CU6_TA_SQC_CTRL_REG */
+	0x3c0a4, 0xffffffff, 0x00060005, /* CGTS_CU6_SP1_CTRL_REG */
+	0x3c0a8, 0xffffffff, 0x00090008, /* CGTS_CU6_TD_TCP_CTRL_REG */
+	0x3c0ac, 0xffffffff, 0x00010000, /* CGTS_CU7_SP0_CTRL_REG */
+	0x3c0b0, 0xffffffff, 0x00030002, /* CGTS_CU7_LDS_SQ_CTRL_REG */
+	0x3c0b4, 0xffffffff, 0x00040007, /* CGTS_CU7_TA_SQC_CTRL_REG */
+	0x3c0b8, 0xffffffff, 0x00060005, /* CGTS_CU7_SP1_CTRL_REG */
+	0x3c0bc, 0xffffffff, 0x00090008, /* CGTS_CU7_TD_TCP_CTRL_REG */
+	0x3c0c0, 0xffffffff, 0x00010000, /* CGTS_CU8_SP0_CTRL_REG */
+	0x3c0c4, 0xffffffff, 0x00030002, /* CGTS_CU8_LDS_SQ_CTRL_REG */
+	0x3c0c8, 0xffffffff, 0x00040007, /* CGTS_CU8_TA_CTRL_REG */
+	0x3c0cc, 0xffffffff, 0x00060005, /* CGTS_CU8_SP1_CTRL_REG */
+	0x3c0d0, 0xffffffff, 0x00090008, /* CGTS_CU8_TD_TCP_CTRL_REG */
+	0x3c0d4, 0xffffffff, 0x00010000, /* CGTS_CU9_SP0_CTRL_REG */
+	0x3c0d8, 0xffffffff, 0x00030002, /* CGTS_CU9_LDS_SQ_CTRL_REG */
+	0x3c0dc, 0xffffffff, 0x00040007, /* CGTS_CU9_TA_CTRL_REG */
+	0x3c0e0, 0xffffffff, 0x00060005, /* CGTS_CU9_SP1_CTRL_REG */
+	0x3c0e4, 0xffffffff, 0x00090008, /* CGTS_CU9_TD_TCP_CTRL_REG */
+	0x3c000, 0xffffffff, 0x96940200, /* CGTS_SM_CTRL_REG */
+	0x8708, 0xffffffff, 0x00900100, /* CP_RB_WPTR_POLL_CNTL */
+	0xc424, 0xffffffff, 0x0020003f, /* RLC_CGCG_CGLS_CTRL */
+	0x9a10, 0x00210000, 0x00018208, /* CB_HW_CONTROL */
+	0x3c000, 0xffff1fff, 0x96940200, /* CGTS_SM_CTRL_REG */
+	0x3c00c, 0xffff0001, 0xff000000, /* CGTS_TCC_DISABLE */
+	0x3c010, 0xffff0000, 0xff000000, /* CGTS_USER_TCC_DISABLE */
+	0x55e4, 0xff607fff, 0xfc000100, /* CGTT_DRM_CLK_CTRL0 */
+	0x3c200, 0xfdfc0fff, 0x00000100, /* CGTT_SPI_CLK_CTRL */
+	0x6ed8, 0x00010000, 0x00010000, /* CRTC_DOUBLE_BUFFER_CONTROL */
+	0x9834, 0xf00fffff, 0x00004400, /* DB_DEBUG2 */
+	0x5bb0, 0x000000f0, 0x00000070, /* FBC_DEBUG_COMP */
+	0x98f8, 0x73773777, 0x12011002, /* GB_ADDR_CONFIG  0x12011003*/
+	0x2f48, 0x73773777, 0x12010001, /* HDP_ADDR_CONFIG */
+	0x8a14, 0xf000003f, 0x00000007, /* PA_CL_ENHANCE */
+	0x8bf0, 0x00000001, 0x00000001, /* PA_SC_ENHANCE */
+	0x8b24, 0xffffffff, 0x00ffffff, /* PA_SC_FORCE_EOV_MAX_CNTS */
+	0x30a04, 0x0000ff0f, 0x00000000, /* PA_SC_LINE_STIPPLE_STATE */
+	0x28a4c, 0x07ffffff, 0x06000000, /* PA_SC_MODE_CNTL_1 */
+	0xc37c, 0xffffffff, 0x00000b00, /* RLC_PG_DELAY_2 */
+	0x4d8, 0x00000fff, 0x00000100, /* SCLK_CGTT_BLK_CTRL_REG */
+	0x3e78, 0x00000001, 0x00000002, /* SEM_CHICKEN_BITS */
+	0xc768, 0x00000008, 0x00000008, /* SPI_RESET_DEBUG */
+	0x8c00, 0x000000ff, 0x00000001, /* SQ_CONFIG */
+	0x9508, 0x00010000, 0x00010000, /* TA_CNTL_AUX */
+	0xac0c, 0xffffffff, 0x76325410, /* TCP_CHAN_STEER_LO */
+	0xc770, 0xffffffff, 0x00000800, /* SPI_RESOURCE_RESERVE_CU_0 */
+	0xc774, 0xffffffff, 0x00000800, /* SPI_RESOURCE_RESERVE_CU_1 */
+	0xc798, 0xffffffff, 0x00ffffbf, /* SPI_RESOURCE_RESERVE_EN_CU_0 */
+	0xc79c, 0xffffffff, 0x00ffffaf, /* SPI_RESOURCE_RESERVE_EN_CU_1  */
+	0xc7a0, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_2 */
+	0xc7a4, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_3 */
+	0xc7a8, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_4 */
+	0xc7ac, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_5*/
+	0xc7b0, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_6 */
+	0xc7b4, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_7 */
+	0xc7b8, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_8 */
+	0xc7bc, 0xffffffff, 0x00fffffe, /* SPI_RESOURCE_RESERVE_EN_CU_9 */
+	0x28350, 0xffffffff, 0x2a00161a, /* PA_SC_RASTER_CONFIG */
+	0x28354, 0xffffffff, 0x00000000, /* PA_SC_RASTER_CONFIG_1 */
+	0x5004, 0x00002000, 0x00002000, /* GARLIC_FLUSH_CNTL */
+	/* SDMA */
+	0xd010, 0xffffffff, 0x08050400, /* SDMA0_CNTL */
+	0xd810, 0xffffffff, 0x08050400, /* SDMA1_CNTL */
+	0xda00, 0xffffffff, 0x00000018,	/*SDMA0_GFX_RB_CNTL */
+	0xd200, 0xffffffff, 0x00000018,	/*SDMA1_GFX_RB_CNTL */
+	0xd228, 0xffffffff, 0x00000100,	/*SDMA0_GFX_IB_CNTL */
+	0xda28, 0xffffffff, 0x00000100,	/*SDMA1_GFX_IB_CNTL */
+	0xd034, 0xffffffff, 0x00000000,	/*SDMA1_GFX_CONTEXT_STATUS */
+	0xd834, 0xffffffff, 0x00000000,	/*SDMA1_GFX_CONTEXT_STATUS */
+	0x14d4, 0xffffffff, 0x00000000, /* VM_CONTEXTS_DISABLE */
 };
 
 static const u32 spectre_golden_spm_registers[] =
@@ -1645,6 +2224,20 @@ static void cik_init_golden_registers(struct radeon_device *rdev)
 						 bonaire_golden_spm_registers,
 						 (const u32)ARRAY_SIZE(bonaire_golden_spm_registers));
 		break;
+	case CHIP_LIVERPOOL:
+		/*radeon_program_register_sequence(rdev,
+						 liverpool_mgcg_cgcg_init,
+						 (const u32)ARRAY_SIZE(liverpool_mgcg_cgcg_init));*/
+		radeon_program_register_sequence(rdev,
+						 liverpool_golden_registers,
+						 (const u32)ARRAY_SIZE(liverpool_golden_registers));
+		radeon_program_register_sequence(rdev,
+						 liverpool_golden_common_registers,
+						 (const u32)ARRAY_SIZE(liverpool_golden_common_registers));
+		/*radeon_program_register_sequence(rdev,
+						 liverpool_golden_spm_registers,
+						 (const u32)ARRAY_SIZE(liverpool_golden_spm_registers));*/
+		break;
 	case CHIP_KABINI:
 		radeon_program_register_sequence(rdev,
 						 kalindi_mgcg_cgcg_init,
@@ -2056,6 +2649,17 @@ static int cik_init_microcode(struct radeon_device *rdev)
 		ce_req_size = CIK_CE_UCODE_SIZE * 4;
 		mec_req_size = CIK_MEC_UCODE_SIZE * 4;
 		rlc_req_size = ML_RLC_UCODE_SIZE * 4;
+		sdma_req_size = CIK_SDMA_UCODE_SIZE * 4;
+		num_fw = 6;
+		break;
+	case CHIP_LIVERPOOL:
+		chip_name = "LIVERPOOL";
+		new_chip_name = "liverpool";
+		pfp_req_size = LIVERPOOL_PFP_UCODE_SIZE * 4;
+		me_req_size = LIVERPOOL_ME_UCODE_SIZE * 4;
+		ce_req_size = CIK_CE_UCODE_SIZE * 4;
+		mec_req_size = CIK_MEC_UCODE_SIZE * 4;
+		rlc_req_size = LIVERPOOL_RLC_UCODE_SIZE * 4;
 		sdma_req_size = CIK_SDMA_UCODE_SIZE * 4;
 		num_fw = 6;
 		break;
@@ -3209,6 +3813,25 @@ static void cik_gpu_init(struct radeon_device *rdev)
 		rdev->config.cik.sc_earlyz_tile_fifo_size = 0x130;
 		gb_addr_config = BONAIRE_GB_ADDR_CONFIG_GOLDEN;
 		break;
+
+	case CHIP_LIVERPOOL:
+		rdev->config.cik.max_shader_engines = 2; // VERIFIED
+		rdev->config.cik.max_tile_pipes = 8; // VERIFIED
+		rdev->config.cik.max_cu_per_sh = 9; // VERIFIED
+		rdev->config.cik.max_sh_per_se = 1; // VERIFIED
+		rdev->config.cik.max_backends_per_se = 2; // PROBABLY OK, >1?
+		rdev->config.cik.max_texture_channel_caches = 4; // ??
+		rdev->config.cik.max_gprs = 256;
+		rdev->config.cik.max_gs_threads = 32; // ??
+		rdev->config.cik.max_hw_contexts = 8;
+
+		rdev->config.cik.sc_prim_fifo_size_frontend = 0x20;
+		rdev->config.cik.sc_prim_fifo_size_backend = 0x100;
+		rdev->config.cik.sc_hiz_tile_fifo_size = 0x30;
+		rdev->config.cik.sc_earlyz_tile_fifo_size = 0x130;
+
+		gb_addr_config = HAWAII_GB_ADDR_CONFIG_GOLDEN;
+		break;
 	case CHIP_HAWAII:
 		rdev->config.cik.max_shader_engines = 4;
 		rdev->config.cik.max_tile_pipes = 16;
@@ -3962,21 +4585,21 @@ static int cik_cp_gfx_load_microcode(struct radeon_device *rdev)
 		/* PFP */
 		fw_data = (const __be32 *)rdev->pfp_fw->data;
 		WREG32(CP_PFP_UCODE_ADDR, 0);
-		for (i = 0; i < CIK_PFP_UCODE_SIZE; i++)
+		for (i = 0; i < rdev->pfp_fw->size/4; i++)
 			WREG32(CP_PFP_UCODE_DATA, be32_to_cpup(fw_data++));
 		WREG32(CP_PFP_UCODE_ADDR, 0);
 
 		/* CE */
 		fw_data = (const __be32 *)rdev->ce_fw->data;
 		WREG32(CP_CE_UCODE_ADDR, 0);
-		for (i = 0; i < CIK_CE_UCODE_SIZE; i++)
+		for (i = 0; i < rdev->ce_fw->size/4; i++)
 			WREG32(CP_CE_UCODE_DATA, be32_to_cpup(fw_data++));
 		WREG32(CP_CE_UCODE_ADDR, 0);
 
 		/* ME */
 		fw_data = (const __be32 *)rdev->me_fw->data;
 		WREG32(CP_ME_RAM_WADDR, 0);
-		for (i = 0; i < CIK_ME_UCODE_SIZE; i++)
+		for (i = 0; i < rdev->me_fw->size/4; i++)
 			WREG32(CP_ME_RAM_DATA, be32_to_cpup(fw_data++));
 		WREG32(CP_ME_RAM_WADDR, 0);
 	}
@@ -4955,7 +5578,21 @@ static void cik_gpu_soft_reset(struct radeon_device *rdev, u32 reset_mask)
 		 RREG32(VM_CONTEXT1_PROTECTION_FAULT_ADDR));
 	dev_info(rdev->dev, "  VM_CONTEXT1_PROTECTION_FAULT_STATUS 0x%08X\n",
 		 RREG32(VM_CONTEXT1_PROTECTION_FAULT_STATUS));
-
+	 dev_info(rdev->dev, "  VM_CONTEXT0_CNTL 0x%08X\n",
+			 RREG32(VM_CONTEXT0_CNTL));
+	 dev_info(rdev->dev, "  VM_CONTEXT1_CNTL 0x%08X\n",
+			 RREG32(VM_CONTEXT1_CNTL));
+	 dev_info(rdev->dev, "  VM_CONTEXT0_CNTL2	0x%08X\n",
+			 RREG32(VM_CONTEXT0_CNTL2));
+	dev_info(rdev->dev, "  VM_CONTEXT1_CNTL2	0x%08X\n",
+	 		RREG32(VM_CONTEXT1_CNTL2));
+	dev_info(rdev->dev, "  VM_CONTEXT8_PAGE_TABLE_BASE_ADDR	0x%08X\n",
+		 	RREG32(VM_CONTEXT8_PAGE_TABLE_BASE_ADDR));
+	dev_info(rdev->dev, "  VM_CONTEXT0_PAGE_TABLE_BASE_ADDR	0x%08X\n",
+		 	RREG32(VM_CONTEXT0_PAGE_TABLE_BASE_ADDR));
+	dev_info(rdev->dev, "  VM_DEBUG	0x%08X\n",
+		 	RREG32(0x15bc));
+//VM_CONTEXT0_PAGE_TABLE_BASE_ADDR
 	/* disable CG/PG */
 	cik_fini_pg(rdev);
 	cik_fini_cg(rdev);
@@ -5461,7 +6098,6 @@ static void cik_pcie_init_compute_vmid(struct radeon_device *rdev)
 static int cik_pcie_gart_enable(struct radeon_device *rdev)
 {
 	int r, i;
-
 	if (rdev->gart.robj == NULL) {
 		dev_err(rdev->dev, "No VRAM object for PCIE GART.\n");
 		return -EINVAL;
@@ -5471,23 +6107,23 @@ static int cik_pcie_gart_enable(struct radeon_device *rdev)
 		return r;
 	/* Setup TLB control */
 	WREG32(MC_VM_MX_L1_TLB_CNTL,
-	       (0xA << 7) |
-	       ENABLE_L1_TLB |
-	       ENABLE_L1_FRAGMENT_PROCESSING |
-	       SYSTEM_ACCESS_MODE_NOT_IN_SYS |
-	       ENABLE_ADVANCED_DRIVER_MODEL |
-	       SYSTEM_APERTURE_UNMAPPED_ACCESS_PASS_THRU);
+				 (0xA << 7) |
+				 ENABLE_L1_TLB |
+				 ENABLE_L1_FRAGMENT_PROCESSING |
+				 SYSTEM_ACCESS_MODE_NOT_IN_SYS |
+				 ENABLE_ADVANCED_DRIVER_MODEL |
+				 SYSTEM_APERTURE_UNMAPPED_ACCESS_PASS_THRU);
 	/* Setup L2 cache */
 	WREG32(VM_L2_CNTL, ENABLE_L2_CACHE |
-	       ENABLE_L2_FRAGMENT_PROCESSING |
-	       ENABLE_L2_PTE_CACHE_LRU_UPDATE_BY_WRITE |
-	       ENABLE_L2_PDE0_CACHE_LRU_UPDATE_BY_WRITE |
-	       EFFECTIVE_L2_QUEUE_SIZE(7) |
-	       CONTEXT1_IDENTITY_ACCESS_MODE(1));
+				 ENABLE_L2_FRAGMENT_PROCESSING |
+				 ENABLE_L2_PTE_CACHE_LRU_UPDATE_BY_WRITE |
+				 ENABLE_L2_PDE0_CACHE_LRU_UPDATE_BY_WRITE |
+				 EFFECTIVE_L2_QUEUE_SIZE(7) |
+				 CONTEXT1_IDENTITY_ACCESS_MODE(1));
 	WREG32(VM_L2_CNTL2, INVALIDATE_ALL_L1_TLBS | INVALIDATE_L2_CACHE);
 	WREG32(VM_L2_CNTL3, L2_CACHE_BIGK_ASSOCIATIVITY |
-	       BANK_SELECT(4) |
-	       L2_CACHE_BIGK_FRAGMENT_SIZE(4));
+				 BANK_SELECT(6) |
+				 L2_CACHE_BIGK_FRAGMENT_SIZE(6));
 	/* setup context0 */
 	WREG32(VM_CONTEXT0_PAGE_TABLE_START_ADDR, rdev->mc.gtt_start >> 12);
 	WREG32(VM_CONTEXT0_PAGE_TABLE_END_ADDR, rdev->mc.gtt_end >> 12);
@@ -5495,15 +6131,16 @@ static int cik_pcie_gart_enable(struct radeon_device *rdev)
 	WREG32(VM_CONTEXT0_PROTECTION_FAULT_DEFAULT_ADDR,
 			(u32)(rdev->dummy_page.addr >> 12));
 	WREG32(VM_CONTEXT0_CNTL2, 0);
-	WREG32(VM_CONTEXT0_CNTL, (ENABLE_CONTEXT | PAGE_TABLE_DEPTH(0) |
-				  RANGE_PROTECTION_FAULT_ENABLE_DEFAULT));
+	WREG32(VM_CONTEXT0_CNTL, ENABLE_CONTEXT | PAGE_TABLE_DEPTH(0) |
+					RANGE_PROTECTION_FAULT_ENABLE_DEFAULT);
+					//0x41);
+				//ENABLE_CONTEXT | PAGE_TABLE_DEPTH(0) |
+				//RANGE_PROTECTION_FAULT_ENABLE_DEFAULT);
 
 	WREG32(0x15D4, 0);
 	WREG32(0x15D8, 0);
 	WREG32(0x15DC, 0);
 
-	/* restore context1-15 */
-	/* set vm size, must be a multiple of 4 */
 	WREG32(VM_CONTEXT1_PAGE_TABLE_START_ADDR, 0);
 	WREG32(VM_CONTEXT1_PAGE_TABLE_END_ADDR, rdev->vm_manager.max_pfn - 1);
 	for (i = 1; i < 16; i++) {
@@ -5515,9 +6152,33 @@ static int cik_pcie_gart_enable(struct radeon_device *rdev)
 			       rdev->vm_manager.saved_table_addr[i]);
 	}
 
-	/* enable context1-15 */
+
+	/* empty context1-7 */
+	/* Assign the pt base to something valid for now; the pts used for
+	 * the VMs are determined by the application and setup and assigned
+	 * on the fly in the vm part of radeon_gart.c
+	 */
+	for (i = 1; i < 16; i++) {
+		if (i < 8) {
+		WREG32(VM_CONTEXT0_PAGE_TABLE_START_ADDR + (i << 2), 0);
+		WREG32(VM_CONTEXT0_PAGE_TABLE_END_ADDR + (i << 2),
+			rdev->vm_manager.max_pfn - 1);
+		WREG32(VM_CONTEXT0_PAGE_TABLE_BASE_ADDR + (i << 2),
+					 rdev->vm_manager.saved_table_addr[i]);
+	 }
+	 else
+	 {
+	  WREG32(VM_CONTEXT8_PAGE_TABLE_START_ADDR + ((i - 8) << 2), 0);
+ 		/*WREG32(VM_CONTEXT8_PAGE_TABLE_END_ADDR + ((i - 8) << 2),
+ 			rdev->vm_manager.max_pfn - 1);*/
+ 		WREG32(VM_CONTEXT8_PAGE_TABLE_BASE_ADDR + ((i - 8) << 2),
+ 					 rdev->vm_manager.saved_table_addr[i]);
+	 }
+	}
+
+	/* enable context1-7 */
 	WREG32(VM_CONTEXT1_PROTECTION_FAULT_DEFAULT_ADDR,
-	       (u32)(rdev->dummy_page.addr >> 12));
+				 (u32)(rdev->dummy_page.addr >> 12));
 	WREG32(VM_CONTEXT1_CNTL2, 4);
 	WREG32(VM_CONTEXT1_CNTL, ENABLE_CONTEXT | PAGE_TABLE_DEPTH(1) |
 				PAGE_TABLE_BLOCK_SIZE(radeon_vm_block_size - 9) |
@@ -6016,6 +6677,9 @@ static int cik_rlc_resume(struct radeon_device *rdev)
 			break;
 		case CHIP_MULLINS:
 			size = ML_RLC_UCODE_SIZE;
+			break;
+		case CHIP_LIVERPOOL:
+			size = LIVERPOOL_RLC_UCODE_SIZE;
 			break;
 		}
 
@@ -6806,6 +7470,10 @@ void cik_get_csb_buffer(struct radeon_device *rdev, volatile u32 *buffer)
 		buffer[count++] = cpu_to_le32(0x3a00161a);
 		buffer[count++] = cpu_to_le32(0x0000002e);
 		break;
+	case CHIP_LIVERPOOL:
+		buffer[count++] = cpu_to_le32(0x2a00161a);
+		buffer[count++] = cpu_to_le32(0x00000000);
+		break;
 	default:
 		buffer[count++] = cpu_to_le32(0x00000000);
 		buffer[count++] = cpu_to_le32(0x00000000);
@@ -7550,7 +8218,7 @@ restart_ih:
 		return IRQ_NONE;
 
 	rptr = rdev->ih.rptr;
-	DRM_DEBUG("cik_irq_process start: rptr %d, wptr %d\n", rptr, wptr);
+	//DRM_DEBUG("cik_irq_process start: rptr %d, wptr %d\n", rptr, wptr);
 
 	/* Order reading of wptr vs. reading of IH ring data */
 	rmb();
@@ -7584,7 +8252,7 @@ restart_ih:
 				if (atomic_read(&rdev->irq.pflip[0]))
 					radeon_crtc_handle_vblank(rdev, 0);
 				rdev->irq.stat_regs.cik.disp_int &= ~LB_D1_VBLANK_INTERRUPT;
-				DRM_DEBUG("IH: D1 vblank\n");
+				//DRM_DEBUG("IH: D1 vblank\n");
 
 				break;
 			case 1: /* D1 vline */
@@ -7592,11 +8260,11 @@ restart_ih:
 					DRM_DEBUG("IH: IH event w/o asserted irq bit?\n");
 
 				rdev->irq.stat_regs.cik.disp_int &= ~LB_D1_VLINE_INTERRUPT;
-				DRM_DEBUG("IH: D1 vline\n");
+				//DRM_DEBUG("IH: D1 vline\n");
 
 				break;
 			default:
-				DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
+				//DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
 				break;
 			}
 			break;
@@ -7614,7 +8282,7 @@ restart_ih:
 				if (atomic_read(&rdev->irq.pflip[1]))
 					radeon_crtc_handle_vblank(rdev, 1);
 				rdev->irq.stat_regs.cik.disp_int_cont &= ~LB_D2_VBLANK_INTERRUPT;
-				DRM_DEBUG("IH: D2 vblank\n");
+				//DRM_DEBUG("IH: D2 vblank\n");
 
 				break;
 			case 1: /* D2 vline */
@@ -7622,11 +8290,11 @@ restart_ih:
 					DRM_DEBUG("IH: IH event w/o asserted irq bit?\n");
 
 				rdev->irq.stat_regs.cik.disp_int_cont &= ~LB_D2_VLINE_INTERRUPT;
-				DRM_DEBUG("IH: D2 vline\n");
+				//DRM_DEBUG("IH: D2 vline\n");
 
 				break;
 			default:
-				DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
+				//DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
 				break;
 			}
 			break;
@@ -7644,7 +8312,7 @@ restart_ih:
 				if (atomic_read(&rdev->irq.pflip[2]))
 					radeon_crtc_handle_vblank(rdev, 2);
 				rdev->irq.stat_regs.cik.disp_int_cont2 &= ~LB_D3_VBLANK_INTERRUPT;
-				DRM_DEBUG("IH: D3 vblank\n");
+				//DRM_DEBUG("IH: D3 vblank\n");
 
 				break;
 			case 1: /* D3 vline */
@@ -7652,11 +8320,11 @@ restart_ih:
 					DRM_DEBUG("IH: IH event w/o asserted irq bit?\n");
 
 				rdev->irq.stat_regs.cik.disp_int_cont2 &= ~LB_D3_VLINE_INTERRUPT;
-				DRM_DEBUG("IH: D3 vline\n");
+				//DRM_DEBUG("IH: D3 vline\n");
 
 				break;
 			default:
-				DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
+				//DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
 				break;
 			}
 			break;
@@ -7674,7 +8342,7 @@ restart_ih:
 				if (atomic_read(&rdev->irq.pflip[3]))
 					radeon_crtc_handle_vblank(rdev, 3);
 				rdev->irq.stat_regs.cik.disp_int_cont3 &= ~LB_D4_VBLANK_INTERRUPT;
-				DRM_DEBUG("IH: D4 vblank\n");
+				//DRM_DEBUG("IH: D4 vblank\n");
 
 				break;
 			case 1: /* D4 vline */
@@ -7682,11 +8350,11 @@ restart_ih:
 					DRM_DEBUG("IH: IH event w/o asserted irq bit?\n");
 
 				rdev->irq.stat_regs.cik.disp_int_cont3 &= ~LB_D4_VLINE_INTERRUPT;
-				DRM_DEBUG("IH: D4 vline\n");
+				//DRM_DEBUG("IH: D4 vline\n");
 
 				break;
 			default:
-				DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
+				//DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
 				break;
 			}
 			break;
@@ -7716,7 +8384,7 @@ restart_ih:
 
 				break;
 			default:
-				DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
+				//DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
 				break;
 			}
 			break;
@@ -7746,7 +8414,7 @@ restart_ih:
 
 				break;
 			default:
-				DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
+				//DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
 				break;
 			}
 			break;
@@ -7871,7 +8539,7 @@ restart_ih:
 
 				break;
 			default:
-				DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
+				//DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
 				break;
 			}
 			break;
@@ -7909,16 +8577,17 @@ restart_ih:
 				radeon_fence_process(rdev, TN_RING_TYPE_VCE2_INDEX);
 				break;
 			default:
-				DRM_ERROR("Unhandled interrupt: %d %d\n", src_id, src_data);
+				//DRM_ERROR("Unhandled interrupt: %d %d\n", src_id, src_data);
 				break;
 			}
 			break;
 		case 176: /* GFX RB CP_INT */
 		case 177: /* GFX IB CP_INT */
+			DRM_ERROR("radeon_fence_process 176 177\n"); // eeply
 			radeon_fence_process(rdev, RADEON_RING_TYPE_GFX_INDEX);
 			break;
 		case 181: /* CP EOP event */
-			DRM_DEBUG("IH: CP EOP\n");
+			DRM_ERROR("IH: CP EOP\n"); // eeply
 			/* XXX check the bitfield order! */
 			me_id = (ring_id & 0x60) >> 5;
 			pipe_id = (ring_id & 0x18) >> 3;
@@ -8069,7 +8738,7 @@ restart_ih:
 			}
 			break;
 		default:
-			DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
+			//DRM_DEBUG("Unhandled interrupt: %d %d\n", src_id, src_data);
 			break;
 		}
 
@@ -8306,6 +8975,10 @@ static int cik_startup(struct radeon_device *rdev)
 			rdev->rlc.reg_list = spectre_rlc_save_restore_register_list;
 			rdev->rlc.reg_list_size =
 				(u32)ARRAY_SIZE(spectre_rlc_save_restore_register_list);
+		} else if (rdev->family == CHIP_LIVERPOOL) {
+			rdev->rlc.reg_list = liverpool_rlc_save_restore_register_list;
+			rdev->rlc.reg_list_size =
+				(u32)ARRAY_SIZE(liverpool_rlc_save_restore_register_list);
 		} else {
 			rdev->rlc.reg_list = kalindi_rlc_save_restore_register_list;
 			rdev->rlc.reg_list_size =
@@ -8439,10 +9112,10 @@ static int cik_startup(struct radeon_device *rdev)
 	r = cik_sdma_resume(rdev);
 	if (r)
 		return r;
-
+#if 0
 	cik_uvd_resume(rdev);
 	cik_vce_resume(rdev);
-
+#endif
 	r = radeon_ib_pool_init(rdev);
 	if (r) {
 		dev_err(rdev->dev, "IB initialization failed (%d).\n", r);
@@ -9370,6 +10043,8 @@ void dce8_bandwidth_update(struct radeon_device *rdev)
 	struct drm_display_mode *mode = NULL;
 	u32 num_heads = 0, lb_size;
 	int i;
+	// FIXME PS4: this stuff is broken
+	return;
 
 	if (!rdev->mode_info.mode_config_initialized)
 		return;

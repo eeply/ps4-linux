@@ -386,8 +386,12 @@ void amdgpu_irq_dispatch(struct amdgpu_device *adev,
 
 		src = adev->irq.client[client_id].sources[src_id];
 		if (!src) {
-			DRM_DEBUG("Unhandled interrupt src_id: %d\n", src_id);
+			//DRM_DEBUG("Unhandled interrupt src_id: %d\n", src_id);
 			return;
+		}
+		else
+		{
+			//DRM_DEBUG("Interrupt src_id: %d client_id: %d\n", src_id, client_id);
 		}
 
 		r = src->funcs->process(adev, src, entry);

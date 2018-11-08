@@ -707,12 +707,12 @@ static void gfx_v8_0_init_golden_registers(struct amdgpu_device *adev)
 		break;
 	case CHIP_POLARIS10:
 		amdgpu_program_register_sequence(adev,
-						 golden_settings_polaris10_a11,
-						 (const u32)ARRAY_SIZE(golden_settings_polaris10_a11));
+							golden_settings_polaris10_a11,
+							ARRAY_SIZE(golden_settings_polaris10_a11));
 		amdgpu_program_register_sequence(adev,
-						 polaris10_golden_common_all,
-						 (const u32)ARRAY_SIZE(polaris10_golden_common_all));
-		WREG32_SMC(ixCG_ACLK_CNTL, 0x0000001C);
+							polaris10_golden_common_all,
+							ARRAY_SIZE(polaris10_golden_common_all));
+		WREG32_SMC(0xc05000dc, 0x0000001C); //ixCG_ACLK_CNTL
 		if (adev->pdev->revision == 0xc7 &&
 		    ((adev->pdev->subsystem_device == 0xb37 && adev->pdev->subsystem_vendor == 0x1002) ||
 		     (adev->pdev->subsystem_device == 0x4a8 && adev->pdev->subsystem_vendor == 0x1043) ||

@@ -255,6 +255,8 @@ amdgpu_ucode_get_load_type(struct amdgpu_device *adev, int load_type)
 	case CHIP_KABINI:
 	case CHIP_HAWAII:
 	case CHIP_MULLINS:
+	case CHIP_LIVERPOOL:
+	case CHIP_GLADIUS:
 		return AMDGPU_FW_LOAD_DIRECT;
 #endif
 	case CHIP_TOPAZ:
